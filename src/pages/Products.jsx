@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React, { Component } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-import productData from '../assets/fake-data/products';
-import Filter from '../components/Filter';
-import Button from '../components/Button';
-import ProductCard from '../components/ProductCard';
+import productData from "../assets/fake-data/products";
+import Filter from "../components/Filter";
+import Button from "../components/Button";
+import ProductCard from "../components/ProductCard";
 
 var count = 6;
 
@@ -20,25 +20,29 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
-
 
   filterBarClicked = () => {
-    document.querySelector('.filter-responsive-sidebar').classList.toggle('show-filter-responsive')
-    document.querySelector('.backdrop-products').classList.toggle('hide')
-  }
+    document
+      .querySelector(".filter-responsive-sidebar")
+      .classList.toggle("show-filter-responsive");
+    document.querySelector(".backdrop-products").classList.toggle("hide");
+  };
 
   handleFilter = (data) => {
     this.setState({
       items: data,
-    })
-  }
+    });
+  };
 
   render() {
     return (
-      <div className='products-container'>
-        <div className="backdrop-products hide" onClick={() => this.filterBarClicked()}></div>
+      <div className="products-container">
+        <div
+          className="backdrop-products hide"
+          onClick={() => this.filterBarClicked()}
+        ></div>
         <div className="products row">
           <div className="products-left col-md-3 col-lg-2">
             <Filter
@@ -49,7 +53,10 @@ class Products extends Component {
           <div className="products-right col-md-9 col-lg-10 col-12">
             <div className="filter-responsive">
               <div className="row">
-                <div className="filter-responsive-btn" onClick={() => this.filterBarClicked()}>
+                <div
+                  className="filter-responsive-btn"
+                  onClick={() => this.filterBarClicked()}
+                >
                   <b>Bộ lọc</b>
                   <i className="bx bx-filter-alt"></i>
                 </div>
@@ -62,7 +69,8 @@ class Products extends Component {
               </div>
             </div>
             <div className="row list-products">
-              {this.state.items && this.state.items.length > 0 &&
+              {this.state.items &&
+                this.state.items.length > 0 &&
                 this.state.items.map((item, index) => (
                   <ProductCard
                     key={index}
@@ -70,9 +78,10 @@ class Products extends Component {
                     name={item.title}
                     price={item.price}
                     path={item.slug}
-                    grid=' col-xl-4 col-md-6 col-12'
+                    grid=" col-xl-4 col-md-6 col-12"
                   />
                 ))}
+              {this.state.items.length === 0 && <h1>Không có sản phẩm nào</h1>}
             </div>
             {/* <InfiniteScroll
               dataLength={this.state.listItem.length}
